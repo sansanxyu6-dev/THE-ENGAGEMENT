@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pertunangan</title>
+    <!-- Hubungkan ke file CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Google (Bisa diganti sesuai selera agar estetik) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- ELEMENT AUDIO (MUSIK LATAR) -->
+    <!-- Ganti 'background-music.mp3' sesuai nama file musikmu di folder assets -->
+    <audio id="bgMusic" src="assets/background.mp3" loop></audio>
+
+    <!-- 1. POP-UP COVER (HALAMAN PEMBUKA) -->
+    <div id="coverOverlay" class="cover-overlay">
+        <!-- Posisinya diubah agar asimetris, ada foto, dan nama bertingkat -->
+        <div class="cover-content">
+            <p class="cover-subtitle">The Engagement of</p>
+            
+            <!-- Elemen Wadah Foto di Bawah Tulisan The Engagement of -->
+            <div class="cover-photo-wrapper">
+                <img src="assets/FOTO2.jpg" alt="Foto Mulyani & Taswa" class="cover-photo">
+            </div>
+
+            <!-- Nama dibuat bertingkat atas-bawah dan dipisah per elemen kata -->
+            <h1 class="cover-title">
+                <span class="nama-atas">Mulyani</span>
+                <span class="dan">&</span>
+                <span class="nama-bawah">Taswa</span>
+            </h1>
+            
+            <!-- Penerima & Tombol dikelompokkan agar letaknya turun ke bawah proporsional -->
+            <div class="cover-footer">
+                <p class="cover-text">Kepada YTH.</p>
+                <h3 class="guest-name">Penerima Undangan</h3>
+                <button id="btnBuka" onclick="bukaUndangan()">Buka Undangan</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT (Akan muncul & bisa di-scroll setelah pop-up dibuka) -->
+    <main id="mainContent" class="main-content hidden">
+
+        <!-- 2. SLIDE 1: THE ENGAGEMENT & COUNTDOWN -->
+     <section id="slide1" class="slide section-hero">
+    <div class="content-wrapper">
+        <p class="hero-subtitle">The Engagement</p>
+        
+        <!-- Bingkai Foto Kotak Asimetris Miring -->
+        <div class="hero-photo-frame">
+            <div class="hero-photo-inner">
+                <img src="assets/FOTO2.jpg" alt="Mulyani & Taswa">
+            </div>
+        </div>
+
+        <!-- Nama Mempelai Bertingkat Miring -->
+        <h2 class="hero-title">
+            <span class="nama-kiri">Mulyani</span>
+            <span class="dan">&</span>
+            <span class="nama-kanan">Taswa</span>
+        </h2>
+        
+        <p class="hero-date-text">Akan mengadakan acara pertunangan pada,</p>
+        <p class="hero-date">Minggu, 26 Juli 2026</p>
+        <p class="hero-countdown-text">Acara akan dimulai dalam</p>
+        
+        <!-- Tempat Countdown Timer -->
+        <div class="countdown-container">
+            <div class="countdown-box"><span id="days">00</span><p>Hari</p></div>
+            <div class="countdown-box"><span id="hours">00</span><p>Jam</p></div>
+            <div class="countdown-box"><span id="minutes">00</span><p>Menit</p></div>
+            <div class="countdown-box"><span id="seconds">00</span><p>Detik</p></div>
+        </div>
+    </div>
+</section>
+ <!-- 3. SLIDE 2: SALAM & MEMPELAI -->
+        <section id="slide2" class="slide section-mempelai">
+            <!-- AREA SLIDE 2: DIATUR RAPI & PRESISI -->
+            <div class="content-wrapper" style="font-family: 'Quicksand', sans-serif; font-weight: 300; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; max-width: 340px; margin: 0 auto; text-align: center; padding: 20px 0;">
+                
+                <!-- 1. SALAM (Dibuat agak miring manis / tegak estetik) -->
+                <div class="salam" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; color: #f4cf9b; margin-bottom: 25px; font-weight: 600; letter-spacing: 1px;">
+                    Assalamualaikum Wr. Wb.
+                </div>
+                
+                <!-- 2. TEKS PEMBUKA (Tipis, Rapi, Jarak Baris Pas) -->
+                <p class="intro-text" style="font-size: 0.85rem; color: #e0e0e0; line-height: 1.6; margin-bottom: 35px; font-weight: 300; letter-spacing: 0.5px;">
+                    Dengan segala kerendahan hati,<br>
+                    kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri<br>
+                    acara pertunangan kami,
+                </p>
+
+                <!-- 3. NAMA MEMPELAI (Disusun Vertikal Padat Gak Blong) -->
+                <div class="mempelai-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-bottom: 35px; width: 100%;">
+                    <div class="mempelai-pria">
+                        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #f4cf9b; margin: 0; font-weight: 400; letter-spacing: 1px;">Mulyani</h3>
+                    </div>
+                    <div class="ampersand" style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.6rem; color: #e0e0e0; margin: 0; font-weight: 400;">&</div>
+                    <div class="mempelai-wanita">
+                        <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; color: #f4cf9b; margin: 0; font-weight: 400; letter-spacing: 1px;">Taswa</h3>
+                    </div>
+                </div>
+
+                <!-- 4. TULISAN TAMBAHAN DI BAWAH NAMA -->
+                <p class="intro-text" style="font-size: 0.85rem; color: #e0e0e0; line-height: 1.6; margin-top: 5px; font-weight: 300; letter-spacing: 0.5px;">
+                    Kami sangat berharap Bapak/Ibu/Saudara/i dapat <br>
+                    menghadiri acara tersebut
+                </p>
+            </div>
+        </section>
+        
+
+        <!-- 4. SLIDE 3: WAKTU & TEMPAT (STAGGERED SCROLL) -->
+        <section id="slide3" class="slide section-acara">
+            <div class="content-wrapper">
+                <h2 class="section-title reveal-item">Waktu & Tempat</h2>
+                
+                <div class="card-acara reveal-item">
+                    <h3>Save The Date</h3>
+                    <p class="jam">Pukul 13.00 WIB - Selesai</p>
+                    <p class="lokasi"><strong>Desa Ganeas</strong><br>Dusun Ganeas RT 05 / RW 07</p>
+                    <!-- Tombol Google Calendar -->
+                    <a href="#" target="_blank" class="btn-calendar">Simpan di Kalender</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. SLIDE 4: BUKU TAMU / KOMENTAR REALTIME (FIREBASE) -->
+        <section id="slide4" class="slide section-komentar">
+            <div class="content-wrapper">
+                <h2 class="section-title">Kirim Pesan</h2>
+                <p class="subtitle-komentar">Berikan doa restu dan ucapan hangat Anda</p>
+
+                <!-- Form Input -->
+                <form id="rsvpForm" class="rsvp-form">
+                    <input type="text" id="inputNama" placeholder="Nama Anda" required>
+                    <textarea id="inputUcapan" placeholder="Tulis ucapan & doa restu..." rows="4" required></textarea>
+                    <!-- TAMBAHAN RESERVASI KEHADIRAN -->
+                    <select id="inputKehadiran" required style="width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ccc; border-radius: 5px; background-color: #fff; font-family: 'Poppins', sans-serif; box-sizing: border-box;">
+                        <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                        <option value="Hadir">Hadir</option>
+                        <option value="Tidak Hadir">Tidak Hadir</option>
+                        <option value="Masih Ragu">Tentatif / Ragu-ragu</option>
+                    </select>
+
+                    <button type="submit">Kirim Ucapan</button>
+                </form>
+                
+
+                <!-- Wadah Tampilan Komentar Realtime -->
+                <div id="commentsContainer" class="comments-container">
+                    <!-- Komentar tamu akan otomatis muncul di sini via JS -->
+                    <div class="loading-msg">Memuat ucapan...</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Hubungkan ke file JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

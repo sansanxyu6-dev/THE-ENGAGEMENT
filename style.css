@@ -1,0 +1,568 @@
+/* ==========================================================================
+   RESET & DASAR UTAMA (OPTIMASI LAYAR HP)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* 1. WARNA TEXT: Diubah menjadi putih gading agar kontras dengan background marun */
+    color: #f5f5f5;
+    background-color: #1a0508; 
+    /* Mengunci tampilan agar rapi di tengah jika dibuka di laptop (Lebar standar HP) */
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* KONSISTENSI BACKGROUND: Semua slide menggunakan satu background yang sama */
+.cover-overlay, .slide {
+    background-image: url('assets/FOTO1.jpeg'); /*
+    /* Jika nanti kamu punya gambar motif/pattern transparan, tinggal pasang di bawah ini: */
+    /* background-image: url('assets/pattern.png'); */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Bikin efek background mantap saat di-scroll */
+}
+
+/* utility untuk menyembunyikan konten sebelum tombol Buka diklik */
+.hidden {
+    display: none !important;
+}
+
+/* ==========================================================================
+   1. POP-UP COVER LAYOUT (DIPERBARUI SUPAYA ASIMETRIS & DINAMIS)
+   ========================================================================== */
+.cover-overlay {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    height: 100vh;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* Diubah menggunakan flex-direction agar elemen menyebar vertikal dan tidak menumpuk di tengah */
+.cover-content {
+    animation: fadeIn 1.7s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 78vh; /* Memanfaatkan ruang kosong vertikal kubah */
+    width: 100%;
+    padding: 55px 50px 10px 50px; /* Samping dikunci 55px agar masuk lengkungan marun */
+}
+
+/* Memperbesar sedikit tulisan 'The Engagement of' dan ditaruh paling atas */
+.cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem; 
+    font-style: italic;
+    color: #f5f5f5;
+    margin-top: 0.01px;
+    margin-bottom: 0;
+}
+
+/* Wadah Foto Eksklusif bentuk Kubah Mini di bawah tulisan engagement */
+.cover-photo-wrapper {
+    width: 130px;
+    height: 165px;
+    border: 2px solid #f4cf9b;
+    border-radius: 60px 60px 0 0; /* Mengikuti gaya lengkungan arch */
+    overflow: hidden;
+    margin: 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cover-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Mengubah layout nama menjadi bertingkat, asimetris (tidak sejajar) */
+/* ==========================================================================
+   PERBAIKAN FINAL LAYOUT NAMA (JAMINAN PRESISI TENGAH)
+   ========================================================================== */
+.cover-title {
+    font-family: 'Cormorant Garamond', serif;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 230px; /* Dinaikkan sedikit ke 230px agar teks nama tidak patah ke bawah */
+    margin: 10px auto; 
+    line-height: 1.2;
+}
+
+.cover-title .nama-atas {
+    font-size: 2rem; 
+    font-weight: 600;
+    color: #f4cf9b;
+    text-align: left; /* Mulyani rata kiri */
+    width: 100%;
+    display: block;
+}
+
+.cover-title .dan {
+    font-size: 1.4rem;
+    color: #f5f5f5;
+    font-style: italic;
+    margin: 2px 0; /* Memberikan sedikit jarak atas-bawah agar manis */
+    
+    /* KUNCI AKURASI DI TENGAH */
+    text-align: center; /* Memaksa karakter & berada di tengah area */
+    width: 100%;
+    display: block;
+}
+
+.cover-title .nama-bawah {
+    font-size: 2rem; 
+    font-weight: 600;
+    color: #f4cf9b;
+    text-align: right; /* Taswa rata kanan */
+    width: 100%;
+    display: block;
+}
+}
+
+/* Bagian footer (penerima undangan & tombol) digeser otomatis ke bawah */
+.cover-footer {
+    margin-top: auto;
+    width: 100%;
+}
+
+.cover-text {
+    font-size: 0.85rem;
+    color: #dcdcdc;
+    margin-bottom: 4px;
+}
+
+.guest-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    font-style: normal;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+button, .btn-calendar {
+    display: inline-block;
+    /* 1. WARNA & FONT: Tombol disesuaikan maroon gelap dengan teks emas */
+    background-color: #3d0c11;
+    color: #f4cf9b;
+    border: 1px solid #f4cf9b;
+    padding: 12px 28px;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    border-radius: 25px;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+button:active, .btn-calendar:active {
+    transform: scale(0.95);
+}
+
+/* ==========================================================================
+   LAYOUT SCROLL & STRUKTUR SLIDE (1 HALAMAN PENUH PER SLIDE)
+   ========================================================================== */
+.main-content {
+    width: 100%;
+}
+
+.slide {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 40px 20px;
+    border-bottom: 1px solid rgba(244, 207, 155, 0.1);
+}
+
+.content-wrapper {
+    width: 100%;
+    padding: 0 55px;
+}
+
+/* ==========================================================================
+   SLIDE 1: MAROON GOLD ASYMMETRIC STYLE
+   ========================================================================== */
+#slide1 {
+    background: linear-gradient(rgba(45, 10, 10, 0.92), rgba(45, 10, 10, 0.92)), url('assets/FOTO3.jpeg'); /* Latar Maroon Gelap */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    color: #f5f5f5;
+    text-align: center;
+}
+
+#slide1 .content-wrapper {
+    width: 100%;
+    max-width: 320px; /* Dikunci agar pas di layar HP */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#slide1 .hero-subtitle {
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 1rem;
+    color: #a8a8a8;
+    margin-bottom: 25px;
+}
+
+/* Style Foto Kotak Miring Asimetris */
+#slide1 .hero-photo-frame {
+    width: 180px;
+    height: 180px;
+    border: 3px solid #f4cf9b; /* Bingkai emas */
+    padding: 8px;
+    transform: rotate(-3deg); /* Efek miring luar */
+    margin-bottom: 30px;
+    background: transparent;
+}
+
+#slide1 .hero-photo-inner {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    transform: rotate(6deg); /* Kontra-rotasi biar fotonya estetik miring berlawanan */
+    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+#slide1 .hero-photo-inner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Susunan Nama Bertingkat & Miring */
+#slide1 .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #f4cf9b;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
+
+#slide1 .hero-title .nama-kiri {
+    text-align: left;
+    width: 100%;
+}
+
+#slide1 .hero-title .dan {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #f5f5f5;
+    margin: 2px 0;
+}
+
+#slide1 .hero-title .nama-kanan {
+    text-align: right;
+    width: 100%;
+}
+
+/* Teks Pendukung & Tanggal */
+#slide1 .hero-date-text, 
+#slide1 .hero-countdown-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.8rem;
+    color: #d1d1d1;
+    margin: 5px 0;
+}
+
+#slide1 .hero-date {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #f4cf9b;
+    margin-bottom: 20px;
+    border-top: 1px dashed rgba(244, 207, 155, 0.3);
+    border-bottom: 1px dashed rgba(244, 207, 155, 0.3);
+    padding: 8px 0;
+    width: 100%;
+}
+
+/* Kotak Countdown Hijau Sage/Muted */
+#slide1 .countdown-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+    border-top: 1px dashed rgba(255,255,255,0.2);
+    padding-top: 15px;
+}
+
+#slide1 .countdown-box {
+    background: #5a6e65; /* Warna sage/muted miring ke contoh */
+    color: #ffffff;
+    padding: 10px 5px;
+    border-radius: 6px;
+    width: 22%;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+#slide1 .countdown-box span {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    display: block;
+}
+
+#slide1 .countdown-box p {
+    font-size: 0.65rem;
+    margin: 0;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
+/* ==========================================================================
+   3. SLIDE 2: SALAM & MEMPELAI
+   ========================================================================== */
+   #slide2 {
+    background: linear-gradient(rgba(45, 10, 10, 0.92), rgba(45, 10, 10, 0.92)), url('assets/FOTO3.jpeg'); /* Latar Maroon Gelap */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    color: #f5f5f5;
+    text-align: center;
+}
+.salam {
+    /* 3. FONT TEXT MEWAH, 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-style: italic;
+    color: #f4cf9b;
+    margin-bottom: 15px;
+}
+
+.intro-text {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.8rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    padding: 0 10px;
+    color: #dcdcdc;
+}
+
+.mempelai-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.mempelai-pria h3, .mempelai-wanita h3 {
+    /* 3. FONT TEXT MEWAH, 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    color: #f4cf9b;
+}
+
+.mempelai-pria p, .mempelai-wanita p {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.75rem;
+    color: #dcdcdc;
+}
+
+.ampersand {
+    /* 3. FONT TEXT MEWAH, 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    color: #f4cf9b;
+    margin: 10px 0;
+}
+
+/* ==========================================================================
+   4. SLIDE 3: WAKTU & LOKASI ACARA
+   ========================================================================== */
+   #slide3 {
+    background: linear-gradient(rgba(45, 10, 10, 0.92), rgba(45, 10, 10, 0.92)), url('assets/FOTO3.jpeg'); /* Latar Maroon Gelap */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    color: #f5f5f5;
+    text-align: center;
+}
+.section-title {
+    /* 3. FONT TEXT MEWAH, 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    color: #f4cf9b;
+    margin-bottom: 30px;
+}
+
+.card-acara {
+    /* Diubah menjadi maroon transparan agar menyatu dengan background */
+    background: rgba(61, 12, 17, 0.75);
+    border: 1px solid rgba(244, 207, 155, 0.4);
+    padding: 30px 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    margin-bottom: 30px;
+}
+
+.card-acara h3 {
+    /* 3. FONT TEXT MEWAH, 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #f4cf9b;
+}
+
+.card-acara .jam {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.card-acara .lokasi {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #dcdcdc;
+}
+
+/* ==========================================================================
+   5. SLIDE 4: BUKU TAMU / RSVP (FIREBASE)
+   ========================================================================== */
+   #slide4 {
+    background: linear-gradient(rgba(45, 10, 10, 0.92), rgba(45, 10, 10, 0.92)), url('assets/FOTO3.jpeg'); /* Latar Maroon Gelap */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    color: #f5f5f5;
+    text-align: center;
+}
+.subtitle-komentar {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.8rem;
+    margin-bottom: 25px;
+    color: #dcdcdc;
+}
+
+.rsvp-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.rsvp-form input, .rsvp-form textarea, .rsvp-form select {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid rgba(244, 207, 155, 0.3);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.95);
+    font-family: 'Poppins', sans-serif;
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.9rem;
+    color: #333;
+    outline: none;
+}
+
+.rsvp-form input:focus, .rsvp-form textarea:focus, .rsvp-form select:focus {
+    border-color: #f4cf9b;
+}
+
+.comments-container {
+    max-height: 250px;
+    overflow-y: auto;
+    text-align: left;
+    background: rgba(61, 12, 17, 0.6);
+    border: 1px solid rgba(244, 207, 155, 0.3);
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comment-item {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 12px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.comment-item h4 {
+    /* 3. FONT TEXT MEWAH, 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #3d0c11;
+    margin-bottom: 4px;
+}
+
+.comment-item p {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    font-size: 0.85rem;
+    color: #222;
+    line-height: 1.4;
+}
+
+.loading-msg {
+    /* 2. UKURAN TEXT & 1. WARNA TEXT */
+    text-align: center;
+    font-size: 0.8rem;
+    color: #dcdcdc;
+    font-style: italic;
+}
+
+/* ==========================================================================
+   ANIMASI DASAR
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
