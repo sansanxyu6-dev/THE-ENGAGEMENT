@@ -85,7 +85,6 @@ body {
     object-fit: cover;
 }
 
-/* KESALAHAN SINTAKS SUDAH DIPERBAIKI DI SINI */
 .cover-title {
     font-family: 'Cormorant Garamond', serif;
     display: flex;
@@ -179,7 +178,6 @@ button:active, .btn-calendar:active {
     text-align: center;
     padding: 40px 20px;
     border-bottom: 1px solid rgba(244, 207, 155, 0.1);
-    /* Grouping background slide agar kode lebih rapi */
     background: linear-gradient(rgba(45, 10, 10, 0.92), rgba(45, 10, 10, 0.92)), url('assets/FOTO3.jpeg');
     background-size: cover;
     background-position: center;
@@ -347,13 +345,11 @@ button:active, .btn-calendar:active {
    PERBAIKAN RESPONSIVE HP (SLIDE 4 / FORM KIRIM PESAN)
    ========================================================================== */
 @media screen and (max-width: 600px) {
-    /* Bebaskan padding samping agar container punya ruang luas */
     #slide4 .content-wrapper {
         padding: 0 15px !important;
         width: 100% !important;
     }
 
-    /* Bikin form & kotak komentar lebar presisi */
     #rsvpForm, 
     #commentsContainer {
         width: 100% !important;
@@ -363,36 +359,37 @@ button:active, .btn-calendar:active {
         box-sizing: border-box !important;
     }
 
-    /* Bikin semua elemen input, textarea, select, & button memenuhi wadah */
     #rsvpForm input,
     #rsvpForm textarea,
     #rsvpForm select,
     #rsvpForm button {
         width: 100% !important;
-        font-family: 'Poppins', sans-serif !important; /* Kembalikan font agar bagus */
+        font-family: 'Poppins', sans-serif !important;
         box-sizing: border-box !important;
     }
 }
-/* Samakan semua jarak bawah untuk input, textarea, dan select */
+
+/* 1. PERBAIKAN JARAK KOLOM INPUT & PESAN */
 #rsvpForm input,
 #rsvpForm textarea,
 #rsvpForm select {
-    margin-bottom: 15px !important;
+    margin-bottom: 18px !important; /* Jarak dibuat 18px agar ada sela antar kolom */
 }
 
-/* Beri jarak atas khusus untuk tombol kirim */
 #rsvpForm button {
     margin-top: 10px !important;
 }
-/* Mengecilkan ukuran teks lokasi di Slide Waktu & Tempat */
+
+/* 2. PERBAIKAN UKURAN TEKS LOKASI ALAMAT */
 .card-acara .lokasi {
-    font-size: 0.8rem !important; /* Diperkecil dari ukuran sebelumnya */
+    font-size: 0.75rem !important; /* Ukuran diperkecil agar tulisan Dusun Ganeas tidak kepotong */
     line-height: 1.4 !important;
+    letter-spacing: -0.2px !important; /* Rapatkan sedikit antar-huruf agar muat 1 baris */
     margin-bottom: 15px !important;
 }
 
 .card-acara .lokasi strong {
-    font-size: 0.95rem !important; /* Ukuran untuk 'Desa Ganeas' */
+    font-size: 0.9rem !important;
     display: inline-block;
     margin-bottom: 3px;
 }
