@@ -373,3 +373,26 @@ button:active, .btn-calendar:active {
         box-sizing: border-box !important;
     }
 }
+/* Samakan semua jarak bawah untuk input, textarea, dan select */
+#rsvpForm input,
+#rsvpForm textarea,
+#rsvpForm select {
+    margin-bottom: 15px !important;
+}
+
+/* Beri jarak atas khusus untuk tombol kirim */
+#rsvpForm button {
+    margin-top: 10px !important;
+}
+/* Mengecilkan ukuran teks lokasi di Slide Waktu & Tempat */
+.card-acara .lokasi {
+    font-size: 0.8rem !important; /* Diperkecil dari ukuran sebelumnya */
+    line-height: 1.4 !important;
+    margin-bottom: 15px !important;
+}
+
+.card-acara .lokasi strong {
+    font-size: 0.95rem !important; /* Ukuran untuk 'Desa Ganeas' */
+    display: inline-block;
+    margin-bottom: 3px;
+}
