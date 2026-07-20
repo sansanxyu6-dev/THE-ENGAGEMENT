@@ -327,11 +327,14 @@ button:active, .btn-calendar:active {
 .comments-container {
     max-height: 250px;
     overflow-y: auto;
+    overflow-x: hidden; /* Mencegah scroll ke samping */
     text-align: left;
     background: rgba(61, 12, 17, 0.6);
     border: 1px solid rgba(244, 207, 155, 0.3);
     padding: 15px;
     border-radius: 10px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .comment-item {
@@ -339,13 +342,20 @@ button:active, .btn-calendar:active {
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 10px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    display: block;
+    color: #333; /* Supaya teks terlihat jelas di latar putih */
 }
 
-/* PERBAIKAN: Memaksa teks ucapan & elemen didalamnya agar selalu patah baris kebawah */
+/* PERBAIKAN KHUSUS TEKS KOMENTAR AGAR PATAH BARIS KE BAWAH */
 .comment-item,
-.comment-item * {
-    word-break: break-all !important;
+.comment-item p,
+.comment-item div,
+.comment-item span {
     overflow-wrap: anywhere !important;
+    word-break: break-all !important;
     white-space: normal !important;
 }
 
