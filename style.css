@@ -339,10 +339,14 @@ button:active, .btn-calendar:active {
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 10px;
-    /* TAMBAHAN 1: Paksa teks ucapan panjang membungkus turun ke bawah */
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    word-break: break-word;
+}
+
+/* PERBAIKAN: Memaksa teks ucapan & elemen didalamnya agar selalu patah baris kebawah */
+.comment-item,
+.comment-item * {
+    word-break: break-all !important;
+    overflow-wrap: anywhere !important;
+    white-space: normal !important;
 }
 
 /* ==========================================================================
