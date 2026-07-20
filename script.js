@@ -100,6 +100,7 @@ function handleScrollAnimation() {
 
 // Daftarkan fungsi ke event scroll di browser
 window.addEventListener('scroll', handleScrollAnimation);
+
 // ==========================================================================
 // 4. FUNGSI KIRIM & TAMPILKAN UCAPAN TAMU (GOOGLE SHEETS / API)
 // ==========================================================================
@@ -118,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(URL_DATABASE_UCAPAN)
             .then(response => response.json())
             .then(data => {
-                commentsContainer.innerHTML = ""; // Bersihkan teks "Memuat ucapan..."
+                commentsContainer.innerHTML = ""; // Bersihkan teks loading
 
                 if (!data || data.length === 0) {
                     commentsContainer.innerHTML = "<p style='color:#e0e0e0;'>Belum ada ucapan. Jadilah yang pertama!</p>";
@@ -155,23 +156,38 @@ document.addEventListener("DOMContentLoaded", function() {
     // Jalankan pemanggilan data pertama kali saat halaman dibuka
     muatDaftarUcapan();
 
-    // B. FUNGSI KIRIM FORM UCAPAN
+    // B. FUNGSI KIRIM FORM UCAPAN (LANGSUNG TAMPIL TANPA NUNGGU / OPTIMISTIC)
     if (rsvpForm) {
         rsvpForm.addEventListener("submit", function(e) {
-            // Mencegah halaman reload/balik ke atas saat tombol diklik
             e.preventDefault(); 
-
-            const btnKirim = rsvpForm.querySelector("button[type='submit']");
-            if (btnKirim) {
-                btnKirim.disabled = true;
-                btnKirim.innerText = "Mengirim...";
-            }
 
             const inputNama = document.getElementById("inputNama").value;
             const inputUcapan = document.getElementById("inputUcapan").value;
             const inputKehadiran = document.getElementById("inputKehadiran").value;
 
-            // Susun data kiriman
+            // 1. BIKIN KARTU UCAPAN BARU & LANGSUNG TAMPILKAN DI WEB INSTAN (0 DETIK)
+            const cardBaru = document.createElement("div");
+            cardBaru.style.cssText = "background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: left;";
+            cardBaru.innerHTML = `
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                    <strong style="color: #f4cf9b;">${inputNama}</strong>
+                    <span style="font-size:0.75rem; background:rgba(244,207,155,0.2); color:#f4cf9b; padding:2px 8px; border-radius:10px;">${inputKehadiran}</span>
+                </div>
+                <p style="margin:0; font-size:0.85rem; color:#e0e0e0; line-height:1.4;">${inputUcapan}</p>
+            `;
+
+            // Kalau sebelumnya ada pesan "Belum ada ucapan", hapus dulu
+            if (commentsContainer.innerHTML.includes("Belum ada ucapan")) {
+                commentsContainer.innerHTML = "";
+            }
+
+            // Tempel pesan ke urutan paling atas
+            commentsContainer.prepend(cardBaru);
+
+            // Reset form langsung
+            rsvpForm.reset();
+
+            // 2. KIRIM DATA KE GOOGLE SHEETS DI BACKGROUND
             const payload = new FormData();
             payload.append("nama", inputNama);
             payload.append("ucapan", inputUcapan);
@@ -183,19 +199,10 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then(response => response.json())
             .then(data => {
-                alert("Terima kasih atas ucapan dan doanya!");
-                rsvpForm.reset(); // Kosongkan form
-                muatDaftarUcapan(); // Perbarui daftar ucapan secara otomatis
+                console.log("Berhasil tersimpan di Google Sheets!");
             })
             .catch(error => {
-                console.error("Gagal mengirim ucapan:", error);
-                alert("Gagal mengirim ucapan. Silakan coba lagi.");
-            })
-            .finally(() => {
-                if (btnKirim) {
-                    btnKirim.disabled = false;
-                    btnKirim.innerText = "Kirim Ucapan";
-                }
+                console.error("Gagal mengirim ke Sheets:", error);
             });
         });
     }
