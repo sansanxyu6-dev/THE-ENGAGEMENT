@@ -105,7 +105,7 @@ window.addEventListener('scroll', handleScrollAnimation);
 // ==========================================================================
 
 // PASTE URL GOOGLE APPS SCRIPT / API KAMU DI DALAM TANDA PETIK DI BAWAH INI
-const URL_DATABASE_UCAPAN = "https://script.google.com/macros/s/AKfycbw8KtjLmgIkrgeiJUablwHxSoRM-D4lcEUO6zcMCc_Dk3v7io23OySi771LzeSnxgL0/exec"; 
+const URL_DATABASE_UCAPAN = "https://script.google.com/macros/s/AKfycbyi87H9LX__cruiFtgCtF5wAQwpufnjBY1aQZuvJGq3AiUR5DNfKvFc-WiotNS9oKL8/exec"; 
 
 document.addEventListener("DOMContentLoaded", function() {
     const rsvpForm = document.getElementById("rsvpForm");
