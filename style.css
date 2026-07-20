@@ -331,10 +331,11 @@ button:active, .btn-calendar:active {
     text-align: left;
     background: rgba(61, 12, 17, 0.6);
     border: 1px solid rgba(244, 207, 155, 0.3);
-    padding: 15px 15px 40px 15px; /* Ditambah padding bawah (40px) agar tidak tertutup tombol panah */
+    padding: 15px;
     border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
+    margin-bottom: 50px; /* Jarak bawah agar tidak bertabrakan dengan tombol panah floating */
 }
 
 .comment-item {
@@ -346,17 +347,17 @@ button:active, .btn-calendar:active {
     max-width: 100%;
     box-sizing: border-box;
     display: block;
-    color: #333; /* Supaya teks terlihat jelas di latar putih */
+    color: #333;
 }
 
-/* PERBAIKAN KHUSUS TEKS KOMENTAR AGAR PATAH BARIS KE BAWAH */
+/* PERBAIKAN KHUSUS TEKS KOMENTAR AGAR RAPI SEPERTI KETIKAN INPUT TEXTAREA */
 .comment-item,
 .comment-item p,
 .comment-item div,
 .comment-item span {
-    overflow-wrap: anywhere !important;
-    word-break: break-all !important;
-    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    word-break: break-word !important;
+    white-space: pre-wrap !important; /* Menjaga spasi & baris seperti aslinya */
 }
 
 /* ==========================================================================
