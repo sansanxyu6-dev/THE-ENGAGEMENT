@@ -343,9 +343,33 @@ button:active, .btn-calendar:active {
     margin-bottom: 10px;
 }
 
+/* ==========================================================================
+   PERBAIKAN RESPONSIVE HP (SLIDE 4 / FORM KIRIM PESAN)
+   ========================================================================== */
 @media screen and (max-width: 600px) {
-    #rsvpForm, #commentsContainer {
-        width: 90% !important;
+    /* Bebaskan padding samping agar container punya ruang luas */
+    #slide4 .content-wrapper {
+        padding: 0 15px !important;
+        width: 100% !important;
+    }
+
+    /* Bikin form & kotak komentar lebar presisi */
+    #rsvpForm, 
+    #commentsContainer {
+        width: 100% !important;
+        max-width: 100% !important;
         margin: 0 auto !important;
+        padding: 10px !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Bikin semua elemen input, textarea, select, & button memenuhi wadah */
+    #rsvpForm input,
+    #rsvpForm textarea,
+    #rsvpForm select,
+    #rsvpForm button {
+        width: 100% !important;
+        font-family: 'Poppins', sans-serif !important; /* Kembalikan font agar bagus */
+        box-sizing: border-box !important;
     }
 }
