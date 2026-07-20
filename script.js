@@ -100,3 +100,103 @@ function handleScrollAnimation() {
 
 // Daftarkan fungsi ke event scroll di browser
 window.addEventListener('scroll', handleScrollAnimation);
+// ==========================================================================
+// 4. FUNGSI KIRIM & TAMPILKAN UCAPAN TAMU (GOOGLE SHEETS / API)
+// ==========================================================================
+
+// PASTE URL GOOGLE APPS SCRIPT / API KAMU DI DALAM TANDA PETIK DI BAWAH INI
+const URL_DATABASE_UCAPAN = "https://script.google.com/macros/s/AKfycbw8KtjLmgIkrgeiJUablwHxSoRM-D4lcEUO6zcMCc_Dk3v7io23OySi771LzeSnxgL0/exec"; 
+
+document.addEventListener("DOMContentLoaded", function() {
+    const rsvpForm = document.getElementById("rsvpForm");
+    const commentsContainer = document.getElementById("commentsContainer");
+
+    // A. FUNGSI AMBIL DAFTAR UCAPAN DARI DATABASE
+    function muatDaftarUcapan() {
+        if (!commentsContainer) return;
+
+        fetch(URL_DATABASE_UCAPAN)
+            .then(response => response.json())
+            .then(data => {
+                commentsContainer.innerHTML = ""; // Bersihkan teks "Memuat ucapan..."
+
+                if (!data || data.length === 0) {
+                    commentsContainer.innerHTML = "<p style='color:#e0e0e0;'>Belum ada ucapan. Jadilah yang pertama!</p>";
+                    return;
+                }
+
+                // Tampilkan daftar ucapan
+                data.forEach(item => {
+                    const card = document.createElement("div");
+                    card.style.cssText = "background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: left;";
+                    
+                    const nama = item.nama || item.Name || 'Tamu';
+                    const kehadiran = item.kehadiran || item.Kehadiran || '';
+                    const pesan = item.ucapan || item.pesan || item.Pesan || '';
+
+                    card.innerHTML = `
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
+                            <strong style="color: #f4cf9b;">${nama}</strong>
+                            <span style="font-size:0.75rem; background:rgba(244,207,155,0.2); color:#f4cf9b; padding:2px 8px; border-radius:10px;">${kehadiran}</span>
+                        </div>
+                        <p style="margin:0; font-size:0.85rem; color:#e0e0e0; line-height:1.4;">${pesan}</p>
+                    `;
+                    commentsContainer.appendChild(card);
+                });
+            })
+            .catch(error => {
+                console.error("Gagal memuat ucapan:", error);
+                if (commentsContainer) {
+                    commentsContainer.innerHTML = "<p style='color:#ff6b6b; font-size:0.85rem;'>Gagal memuat ucapan. Cek koneksi / URL API.</p>";
+                }
+            });
+    }
+
+    // Jalankan pemanggilan data pertama kali saat halaman dibuka
+    muatDaftarUcapan();
+
+    // B. FUNGSI KIRIM FORM UCAPAN
+    if (rsvpForm) {
+        rsvpForm.addEventListener("submit", function(e) {
+            // Mencegah halaman reload/balik ke atas saat tombol diklik
+            e.preventDefault(); 
+
+            const btnKirim = rsvpForm.querySelector("button[type='submit']");
+            if (btnKirim) {
+                btnKirim.disabled = true;
+                btnKirim.innerText = "Mengirim...";
+            }
+
+            const inputNama = document.getElementById("inputNama").value;
+            const inputUcapan = document.getElementById("inputUcapan").value;
+            const inputKehadiran = document.getElementById("inputKehadiran").value;
+
+            // Susun data kiriman
+            const payload = new FormData();
+            payload.append("nama", inputNama);
+            payload.append("ucapan", inputUcapan);
+            payload.append("kehadiran", inputKehadiran);
+
+            fetch(URL_DATABASE_UCAPAN, {
+                method: "POST",
+                body: payload
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert("Terima kasih atas ucapan dan doanya!");
+                rsvpForm.reset(); // Kosongkan form
+                muatDaftarUcapan(); // Perbarui daftar ucapan secara otomatis
+            })
+            .catch(error => {
+                console.error("Gagal mengirim ucapan:", error);
+                alert("Gagal mengirim ucapan. Silakan coba lagi.");
+            })
+            .finally(() => {
+                if (btnKirim) {
+                    btnKirim.disabled = false;
+                    btnKirim.innerText = "Kirim Ucapan";
+                }
+            });
+        });
+    }
+});
