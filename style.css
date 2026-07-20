@@ -327,11 +327,11 @@ button:active, .btn-calendar:active {
 .comments-container {
     max-height: 250px;
     overflow-y: auto;
-    overflow-x: hidden; /* Mencegah scroll ke samping */
+    overflow-x: hidden;
     text-align: left;
     background: rgba(61, 12, 17, 0.6);
     border: 1px solid rgba(244, 207, 155, 0.3);
-    padding: 15px;
+    padding: 15px 15px 40px 15px; /* Ditambah padding bawah (40px) agar tidak tertutup tombol panah */
     border-radius: 10px;
     width: 100%;
     box-sizing: border-box;
