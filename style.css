@@ -350,14 +350,14 @@ button:active, .btn-calendar:active {
     color: #333;
 }
 
-/* PERBAIKAN KHUSUS TEKS KOMENTAR AGAR RAPI SEPERTI KETIKAN INPUT TEXTAREA */
+/* PERBAIKAN KHUSUS TEKS KOMENTAR AGAR RATA KANAN-KIRI & SEIMBANG */
 .comment-item,
 .comment-item p,
 .comment-item div,
 .comment-item span {
-    overflow-wrap: break-word !important;
-    word-break: break-word !important;
-    white-space: pre-wrap !important; /* Menjaga spasi & baris seperti aslinya */
+    overflow-wrap: anywhere !important;
+    word-break: break-word !important; /* Dipotong per kata, bukan per huruf acak */
+    text-align: justify !important;   /* Teks otomatis rata kanan dan kiri */
 }
 
 /* ==========================================================================
@@ -388,15 +388,16 @@ button:active, .btn-calendar:active {
     }
 }
 
-/* PERBAIKAN JARAK KOLOM INPUT & PESAN */
+/* PERBAIKAN JARAK KOLOM INPUT & PESAN AGAR TIDAK TERLALU RENGGANG */
 #rsvpForm input,
 #rsvpForm textarea,
 #rsvpForm select {
-    margin-bottom: 18px !important;
+    margin-bottom: 10px !important; /* Dikecilkan dari 18px ke 10px agar rapat */
 }
 
 #rsvpForm button {
-    margin-top: 10px !important;
+    margin-top: 5px !important;
+    margin-bottom: 15px !important;
 }
 
 /* PERBAIKAN UKURAN TEKS LOKASI ALAMAT */
