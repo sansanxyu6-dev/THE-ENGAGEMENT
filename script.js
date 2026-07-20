@@ -129,7 +129,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 // Tampilkan daftar ucapan
                 data.forEach(item => {
                     const card = document.createElement("div");
-                    card.style.cssText = "background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: left;";
+                    card.className = "comment-item";
+                    card.style.cssText = "background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: left; box-sizing: border-box; width: 100%; max-width: 100%; word-break: break-all; overflow-wrap: anywhere;";
                     
                     const nama = item.nama || item.Name || 'Tamu';
                     const kehadiran = item.kehadiran || item.Kehadiran || '';
@@ -140,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             <strong style="color: #f4cf9b;">${nama}</strong>
                             <span style="font-size:0.75rem; background:rgba(244,207,155,0.2); color:#f4cf9b; padding:2px 8px; border-radius:10px;">${kehadiran}</span>
                         </div>
-                        <p style="margin:0; font-size:0.85rem; color:#e0e0e0; line-height:1.4;">${pesan}</p>
+                        <p style="margin:0; font-size:0.85rem; color:#e0e0e0; line-height:1.4; word-break: break-all; overflow-wrap: anywhere; white-space: normal;">${pesan}</p>
                     `;
                     commentsContainer.appendChild(card);
                 });
@@ -167,13 +168,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // 1. BIKIN KARTU UCAPAN BARU & LANGSUNG TAMPILKAN DI WEB INSTAN (0 DETIK)
             const cardBaru = document.createElement("div");
-            cardBaru.style.cssText = "background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: left;";
+            cardBaru.className = "comment-item";
+            cardBaru.style.cssText = "background: rgba(255,255,255,0.1); padding: 12px; margin-bottom: 10px; border-radius: 8px; text-align: left; box-sizing: border-box; width: 100%; max-width: 100%; word-break: break-all; overflow-wrap: anywhere;";
             cardBaru.innerHTML = `
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:5px;">
                     <strong style="color: #f4cf9b;">${inputNama}</strong>
                     <span style="font-size:0.75rem; background:rgba(244,207,155,0.2); color:#f4cf9b; padding:2px 8px; border-radius:10px;">${inputKehadiran}</span>
                 </div>
-                <p style="margin:0; font-size:0.85rem; color:#e0e0e0; line-height:1.4;">${inputUcapan}</p>
+                <p style="margin:0; font-size:0.85rem; color:#e0e0e0; line-height:1.4; word-break: break-all; overflow-wrap: anywhere; white-space: normal;">${inputUcapan}</p>
             `;
 
             // Kalau sebelumnya ada pesan "Belum ada ucapan", hapus dulu
