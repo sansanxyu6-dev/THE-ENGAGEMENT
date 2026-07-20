@@ -339,6 +339,10 @@ button:active, .btn-calendar:active {
     padding: 12px;
     border-radius: 8px;
     margin-bottom: 10px;
+    /* TAMBAHAN 1: Paksa teks ucapan panjang membungkus turun ke bawah */
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
 }
 
 /* ==========================================================================
@@ -369,22 +373,22 @@ button:active, .btn-calendar:active {
     }
 }
 
-/* 1. PERBAIKAN JARAK KOLOM INPUT & PESAN */
+/* PERBAIKAN JARAK KOLOM INPUT & PESAN */
 #rsvpForm input,
 #rsvpForm textarea,
 #rsvpForm select {
-    margin-bottom: 18px !important; /* Jarak dibuat 18px agar ada sela antar kolom */
+    margin-bottom: 18px !important;
 }
 
 #rsvpForm button {
     margin-top: 10px !important;
 }
 
-/* 2. PERBAIKAN UKURAN TEKS LOKASI ALAMAT */
+/* PERBAIKAN UKURAN TEKS LOKASI ALAMAT */
 .card-acara .lokasi {
-    font-size: 0.75rem !important; /* Ukuran diperkecil agar tulisan Dusun Ganeas tidak kepotong */
+    font-size: 0.75rem !important;
     line-height: 1.4 !important;
-    letter-spacing: -0.2px !important; /* Rapatkan sedikit antar-huruf agar muat 1 baris */
+    letter-spacing: -0.2px !important;
     margin-bottom: 15px !important;
 }
 
@@ -392,4 +396,44 @@ button:active, .btn-calendar:active {
     font-size: 0.9rem !important;
     display: inline-block;
     margin-bottom: 3px;
+}
+
+/* ==========================================================================
+   TAMBAHAN 2: TOMBOL PANAH GULIR MELAYANG (SCROLL INDICATOR)
+   ========================================================================== */
+.scroll-down-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 42px;
+    height: 42px;
+    background-color: #ffffff;
+    color: #1a0508;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    z-index: 100;
+    pointer-events: none;
+    animation: bounce 2s infinite;
+}
+
+.scroll-down-btn .arrow-icon {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateX(-50%) translateY(0);
+    }
+    40% {
+        transform: translateX(-50%) translateY(-8px);
+    }
+    60% {
+        transform: translateX(-50%) translateY(-4px);
+    }
 }
